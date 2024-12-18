@@ -1,0 +1,42 @@
+.table-selector-container {
+  padding: 20px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.table-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.table-selector-button {
+  height: 60px;
+  padding: 10px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: white;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.table-selector-button:hover {
+  border-color: #EF4D36;
+  background-color: #f5f5f5;
+}
+
+.table-selector-button.selected {
+  background-color: #EF4D36;
+  color: white;
+  border-color: #EF4D36;
+}
