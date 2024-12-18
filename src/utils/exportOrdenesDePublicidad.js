@@ -46,17 +46,15 @@ export const exportOrdenesDePublicidad = async (selectedItem, startDate, endDate
       console.log('Orden encontrada:', singleOrder);
       let excelData = [];
       
-      // Procesar la orden encontrada
-      let datosRecopilados;
-      try {
-        datosRecopilados = typeof singleOrder.datosrecopiladosb === 'string' ? 
-          JSON.parse(singleOrder.datosrecopiladosb) : singleOrder.datosrecopiladosb;
-      } catch (error) {
-        console.error('Error al parsear datosrecopiladosb:', error);
-        datosRecopilados = { datos: [], totales: {} };
-      }
+  
       
-      console.log('Datos recopilados:', datosRecopilados);
+// Obtener los datos recopilados del JSON
+const datosRecopilados = singleOrder.datosRecopiladosb || { datos: [], totales: {} };
+    
+console.log('Datos recopilados:', datosRecopilados);
+
+
+      //console.log('Datos recopilados:', datosRecopilados);
 
       // Procesar los datos
       if (datosRecopilados?.datos && Array.isArray(datosRecopilados.datos)) {
@@ -70,7 +68,7 @@ export const exportOrdenesDePublicidad = async (selectedItem, startDate, endDate
               const cantidad = fecha.cantidad || 0;
 
               excelData.push({
-                'Fecha': fechaCompleta,
+                'Fecha de Publicación': fechaCompleta,
                 'Número de Orden': singleOrder.numerodeorden || '',
                 'Número de Contrato': singleOrder.num_contrato || '',
                 'Producto': singleOrder.Contratos?.nombreProducto || '',
@@ -90,7 +88,7 @@ export const exportOrdenesDePublicidad = async (selectedItem, startDate, endDate
                 // Datos específicos del día
                 'Cantidad de Spots': fecha.cantidad || '',
                 'Duración': dato.segundos || '',
-                'Tema ID': dato.tema_id || '',
+                //'Tema ID': dato.tema_id || '',
                 'Descuento': dato.descuento || 0,
                 'Valor Neto': dato.valor_neto || 0,
                 'Valor Bruto': dato.valor_bruto || 0,
